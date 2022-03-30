@@ -13,8 +13,9 @@ RUN apt-get install --no-install-recommends -y \
 
 WORKDIR /usr/src/app/bombsquad-server
 
-RUN wget https://files.ballistica.net/bombsquad/builds/BombSquad_Server_Linux_x86_64_${BS_VERSION}.tar.gz --no-check-certificate -O /tmp/bombsquad-server.tar.gz && \
-    tar -xvzf /tmp/bombsquad-server.tar.gz -C /tmp && \
+COPY ./downloads/linux/x86_64/bombsquad-server.tar.gz /tmp/bombsquad-server.tar.gz
+
+RUN tar -xvzf /tmp/bombsquad-server.tar.gz -C /tmp && \
     mv /tmp/BombSquad_Server*/** /usr/src/app/bombsquad-server && \
     rm -rf /tmp
 
